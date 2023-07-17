@@ -1,3 +1,4 @@
+
 *,*::after,*::before{
     box-sizing: border-box;
 }
@@ -9,4 +10,20 @@ body{
 }
 img{
     height: 60px;
+#logo{
+    width: 200px;
+}
+
+body{
+    background-image: url(assets/bg.jpg);
+    background-size: 100%;
+    display: block;
+}
+
+#cPromise{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.butt1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
