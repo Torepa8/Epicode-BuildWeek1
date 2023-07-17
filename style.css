@@ -2,6 +2,8 @@
     box-sizing: border-box;
 }
 body{
+    margin-top: 5%;
+    margin-left: 15%;
     background-image: url(assets/bg.jpg);
     background-size: 100%;
 }
