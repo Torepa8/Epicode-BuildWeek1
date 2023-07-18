@@ -138,14 +138,19 @@ function controllarisposte(rispUser){
 
 function allAnswers(){
   let allAns=[]
-  // const oneAns={uno:"",due:"",tre:"",quattro:""}
+  let allBool=[]
+  //const oneAns={uno:"",due:"",tre:"",quattro:""}
     for(let x=0;x<questions.length;x++){
+      if(questions[x].type!="boolean"){
       const oneAns={uno:"",due:"",tre:"",quattro:""}
       oneAns.uno=questions[x].correct_answer
       oneAns.due=questions[x].incorrect_answers[0]
       oneAns.tre=questions[x].incorrect_answers[1]
       oneAns.quattro=questions[x].incorrect_answers[2]
       allAns.push(oneAns)
+      }else{
+        
+      }
       // alert(oneAns)
     }
   return allAns
@@ -157,7 +162,6 @@ function allAnswers(){
 window.onload=function(){
   const buttonStart=document.getElementById("start")
   buttonStart.addEventListener("click", function(){
-    
     //elimino h1,h3, dalla pagina
     let h1=document.querySelector("h1")
     h1.remove()
