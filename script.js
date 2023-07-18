@@ -145,7 +145,7 @@ function allAnswers(){
       oneAns.tre=questions[x].incorrect_answers[1]
       oneAns.quattro=questions[x].incorrect_answers[2]
       allAns.push(oneAns)
-      alert(oneAns)
+      // alert(oneAns)
     }
   return allAns
 }
@@ -156,11 +156,23 @@ function allAnswers(){
 window.onload=function(){
   const buttonStart=document.getElementById("start")
   buttonStart.addEventListener("click", function(){
+    
+    //elimino h1,h3, dalla pagina
+    let h1=document.querySelector("h1")
+    h1.remove()
+    let h3=document.querySelector("h3")
+    h3.innerText=questions[0].question
+    let p=document.querySelector("p")
+    p.remove()
+    let divF=document.querySelector("div.footer")
+    divF.remove()
+
+    //al click del bottone proceed parte questo
     let newli=document.createElement('li')
-    let domand=document.querySelector('ul.domanda')
-    alert("ciao")
-    newli.innerText=questions[0].question
-    console.log(newli.innerText)
+    let domand=document.querySelector('ul')
+    alert("Sta per iniziare il tuo esame")
+    // newli.innerText=questions[0].question
+    // console.log(newli.innerText)
     domand.appendChild(newli)
     let radioButton=document.createElement('input')
     radioButton.setAttribute("type", "radio")
