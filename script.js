@@ -138,8 +138,9 @@ function controllarisposte(rispUser){
 
 function allAnswers(){
   let allAns=[]
-  const oneAns={uno:"",due:"",tre:"",quattro:""}
+  // const oneAns={uno:"",due:"",tre:"",quattro:""}
     for(let x=0;x<questions.length;x++){
+      const oneAns={uno:"",due:"",tre:"",quattro:""}
       oneAns.uno=questions[x].correct_answer
       oneAns.due=questions[x].incorrect_answers[0]
       oneAns.tre=questions[x].incorrect_answers[1]
@@ -167,17 +168,19 @@ window.onload=function(){
     let divF=document.querySelector("div.footer")
     divF.remove()
 
+    alert("Sta per iniziare il tuo esame")
+
     //al click del bottone proceed parte questo
     let newli=document.createElement('li')
     let domand=document.querySelector('ul')
-    alert("Sta per iniziare il tuo esame")
-    // newli.innerText=questions[0].question
+    
+    //newli.innerText=questions[0].incorrect_answers[0]
     // console.log(newli.innerText)
     domand.appendChild(newli)
     let radioButton=document.createElement('input')
     radioButton.setAttribute("type", "radio")
     // newli.classList.add("newClass")
-    radioButton.innerText=questions[0].correct_answer
+    radioButton.innerHTML=questions[0].correct_answer
     console.log(radioButton.innerText)
     domand.appendChild(radioButton)
 
