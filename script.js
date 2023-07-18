@@ -1,3 +1,4 @@
+   
     const questions = [
       {
         category: "Science: Computers",
@@ -97,3 +98,55 @@
         incorrect_answers: ["Python", "C", "Jakarta"],
       },
     ];
+
+
+//Abbiamo un array di domande composto da:
+//category, type, difficulty, question, correct_answer, incorrect_answers
+
+//per prima cosa direi di preparare la pagina iniziale che sarà composta da:
+//logo epicode, titolo (Welcome to Your Exam), instructions, lista di info, 
+//campo checked da flaggare per abilitare il bottone di inizio esame.
+
+//array di risposte utente da caricare mentre fa il test
+let answersUser=[
+  "Central Processing Unit",
+  "Final",
+  "True",
+  "Computer Personal Unit",
+  "Final",
+  "False",
+  "Computer Personal Unit",
+  "140",
+  "False",
+  "Java"
+]
+//punteggio utente 
+let score=0
+
+
+//funzione per confrontare le risposte corrette 
+//con quelle dell'utente 
+function controllarisposte(rispUser){
+  for (let i=0;i<questions.length;i++) {
+    if(rispUser[i]===questions[i].correct_answer){
+      score+=1;
+    }
+  }
+}
+
+
+
+// controllarisposte(answersUser)
+
+// console.log(score)
+
+
+window.onload = function() {
+   let checkPromise=document.querySelector("#cpromise")
+   let button1=document.querySelector("#butt1")
+   if(checkPromise.checked===false){
+     button1.disabled=false
+     console.log("dentro")
+     button1.addEventListener(click, alert("Ciao"))
+   }
+}
