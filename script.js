@@ -111,11 +111,11 @@
 let answersUser=[
   "Central Processing Unit",
   "Final",
-  "True",
+  "False",
   "Computer Personal Unit",
   "Final",
   "False",
-  "Computer Personal Unit",
+  "Nougat",
   "140",
   "False",
   "Java"
@@ -136,17 +136,6 @@ function controllarisposte(rispUser){
 
 
 
-// controllarisposte(answersUser)
+controllarisposte(answersUser)
 
-// console.log(score)
-
-
-window.onload = function() {
-   let checkPromise=document.querySelector("#cpromise")
-   let button1=document.querySelector("#butt1")
-   if(checkPromise.checked===false){
-     button1.disabled=false
-     console.log("dentro")
-     button1.addEventListener(click, alert("Ciao"))
-   }
-}
+console.log("Hai totalizzato "+ score + " su 10")
