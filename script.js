@@ -108,6 +108,7 @@
 //campo checked da flaggare per abilitare il bottone di inizio esame.
 
 //array di risposte utente da caricare mentre fa il test
+//ora ho messo delle risposte per provare il funzionamento
 let answersUser=[
   "Central Processing Unit",
   "Final",
