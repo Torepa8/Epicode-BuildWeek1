@@ -1,3 +1,18 @@
+
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+body{
+    margin-top: 0;
+    margin-left: 0;
+    background-image: url(assets/bg.jpg);
+    background-size: 100%;
+}
+img {
+    height: 60px;
+    margin-top: 5%;
+    margin-left: 15%;
+}
 #logo{
     width: 200px;
 }
@@ -14,4 +29,33 @@ body{
 
 .butt1{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.h1{
+    background-color: aqua;
+}
+
+.question{
+    color: white;
+    text-align: center;
+}
+
+.answer{
+    color: white;
+    padding: 20px 200px;
+    border: 1px solid white;
+    border-radius: 50px;
+    margin: 10px 20px;
+    
+}
+
+#answers{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 150px; 
+   
+}
+
+h3{
+    color: white;
+    text-align: center;
 }
