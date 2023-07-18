@@ -99,7 +99,6 @@
       },
     ];
 
-
 //Abbiamo un array di domande composto da:
 //category, type, difficulty, question, correct_answer, incorrect_answers
 
@@ -109,18 +108,18 @@
 
 //array di risposte utente da caricare mentre fa il test
 //ora ho messo delle risposte per provare il funzionamento
-let answersUser=[
-  "Central Processing Unit",
-  "Final",
-  "False",
-  "Computer Personal Unit",
-  "Final",
-  "False",
-  "Nougat",
-  "140",
-  "False",
-  "Java"
-]
+let answersUser=[]
+//   "Central Processing Unit",
+//   "Final",
+//   "False",
+//   "Computer Personal Unit",
+//   "Final",
+//   "False",
+//   "Nougat",
+//   "140",
+//   "False",
+//   "Java"
+// ]
 //punteggio utente 
 let score=0
 
@@ -138,8 +137,7 @@ function controllarisposte(rispUser){
 
 function allAnswers(){
   let allAns=[]
-  let boolAns=[]
-  //const oneAns={uno:"",due:"",tre:"",quattro:""}
+  // const oneAns={uno:"",due:"",tre:"",quattro:""}
     for(let x=0;x<questions.length;x++){
       if(questions[x].type!="boolean"){
       const oneAns={uno:"",due:"",tre:"",quattro:""}
@@ -149,48 +147,65 @@ function allAnswers(){
       oneAns.quattro=questions[x].incorrect_answers[2]
       allAns.push(oneAns)
       }else{
-        const boolAns={uno:"", due:""}
-        boolAns.uno=questions[x].correct_answer
-        boolAns.due=questions[x].incorrect_answers
+        const bAns={uno:"",due:""}
+        bAns.uno=questions[x].correct_answer
+        bAns.due=questions[x].incorrect_answers
+        allAns.push(bAns)
       }
-      // alert(oneAns)
     }
-  return [allAns,boolAns]
+  return allAns
 }
 // controllarisposte(answersUser)
 
 // console.log("Hai totalizzato "+ score + " su 10")
+function proceed(){
+  const buttonAnswer=document.querySelectorAll(".answer")
+  const questionLabel=document.querySelector("h1.question")
+  for(let i=0;i<buttonAnswer.length;i++){
+    alert(buttonAnswer.length)
+    questionLabel.innerHTML=questions[i].question
+    buttonAnswer[i].innerHTML=allAns[i].uno
+    buttonAnswer[i].innerHTML=allAns[i].due
+    buttonAnswer[i].innerHTML=allAns[i].tre
+    buttonAnswer[i].innerHTML=allAns[i].quattro
+  }
+  //buttonAnswer[0].innerHTML=questions[0].correct_answer
+}
+
 
 window.onload=function(){
-  const buttonStart=document.getElementById("start")
-  buttonStart.addEventListener("click", function(){
+  let fourAns=allAnswers()
+  console.log(fourAns)
+  proceed()
+  // const buttonAnswer=document.querySelectorAll(".answer")
+  // buttonAnswer[0].innerHTML=questions[0].correct_answer
+  buttonProceed.addEventListener("click", function(){
+    
     //elimino h1,h3, dalla pagina
-    let h1=document.querySelector("h1")
-    h1.remove()
-    let h3=document.querySelector("h3")
-    h3.innerText=questions[0].question
-    let p=document.querySelector("p")
-    p.remove()
-    let divF=document.querySelector("div.footer")
-    divF.remove()
+    // let h1=document.querySelector("h1")
+    // h1.remove()
+    // let h3=document.querySelector("h3")
+    // h3.innerText=questions[0].question
+    // let p=document.querySelector("p")
+    // p.remove()
+    // let divF=document.querySelector("div.footer")
+    // divF.remove()
 
     alert("Sta per iniziare il tuo esame")
 
     //al click del bottone proceed parte questo
-    let newli=document.createElement('li')
-    let domand=document.querySelector('ul')
+    // let newli=document.createElement('li')
+    // let domand=document.querySelector('ul')
     
     //newli.innerText=questions[0].incorrect_answers[0]
     // console.log(newli.innerText)
-    domand.appendChild(newli)
-    let radioButton=document.createElement('input')
-    radioButton.setAttribute("type", "radio")
-    // newli.classList.add("newClass")
-    radioButton.innerHTML=questions[0].correct_answer
-    console.log(radioButton.innerText)
-    domand.appendChild(radioButton)
+    // domand.appendChild(newli)
+    // let Button=document.createElement('button')
 
-    let TutteRisposte=[]=allAnswers()
-    console.log(TutteRisposte)
+    // newli.classList.add("newClass")
+    // domand.appendChild(Button)
+
+
+    // console.log(allAnswers,boolAns)
   })
 }
