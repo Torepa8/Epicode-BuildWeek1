@@ -138,7 +138,7 @@ function controllarisposte(rispUser){
 
 function allAnswers(){
   let allAns=[]
-  let allBool=[]
+  let boolAns=[]
   //const oneAns={uno:"",due:"",tre:"",quattro:""}
     for(let x=0;x<questions.length;x++){
       if(questions[x].type!="boolean"){
@@ -149,11 +149,13 @@ function allAnswers(){
       oneAns.quattro=questions[x].incorrect_answers[2]
       allAns.push(oneAns)
       }else{
-        
+        const boolAns={uno:"", due:""}
+        boolAns.uno=questions[x].correct_answer
+        boolAns.due=questions[x].incorrect_answers
       }
       // alert(oneAns)
     }
-  return allAns
+  return [allAns,boolAns]
 }
 // controllarisposte(answersUser)
 
