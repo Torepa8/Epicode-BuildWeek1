@@ -136,7 +136,40 @@ function controllarisposte(rispUser){
 }
 
 
+function allAnswers(){
+  let allAns=[]
+  const oneAns={uno:"",due:"",tre:"",quattro:""}
+    for(let x=0;x<questions.length;x++){
+      oneAns.uno=questions[x].correct_answer
+      oneAns.due=questions[x].incorrect_answers[0]
+      oneAns.tre=questions[x].incorrect_answers[1]
+      oneAns.quattro=questions[x].incorrect_answers[2]
+      allAns.push(oneAns)
+      alert(oneAns)
+    }
+  return allAns
+}
+// controllarisposte(answersUser)
 
-controllarisposte(answersUser)
+// console.log("Hai totalizzato "+ score + " su 10")
 
-console.log("Hai totalizzato "+ score + " su 10")
+window.onload=function(){
+  const buttonStart=document.getElementById("start")
+  buttonStart.addEventListener("click", function(){
+    let newli=document.createElement('li')
+    let domand=document.querySelector('ul.domanda')
+    alert("ciao")
+    newli.innerText=questions[0].question
+    console.log(newli.innerText)
+    domand.appendChild(newli)
+    let radioButton=document.createElement('input')
+    radioButton.setAttribute("type", "radio")
+    // newli.classList.add("newClass")
+    radioButton.innerText=questions[0].correct_answer
+    console.log(radioButton.innerText)
+    domand.appendChild(radioButton)
+
+    let TutteRisposte=[]=allAnswers()
+    console.log(TutteRisposte)
+  })
+}
