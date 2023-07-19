@@ -3,9 +3,17 @@
         background-repeat: no-repeat;
         background-size: cover;
       }
+
+      main {
+        display: flex;
+        margin-top: 10%;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+      }
     
       header {
-        display: flex;
+        display: flex;      
         flex-direction: column;
         align-items: flex-start;
         gap: 20px;
@@ -23,9 +31,11 @@
         margin-bottom: 3%;
         
       }
-      .logo{
-      width: 250px;
+      .logo {
+        width: 250px;
+        margin-left: 35%;
       }
+
       p{
         color: white;
         gap: 20px;
@@ -80,19 +90,6 @@ body{
     display: block;
 }
 
-#cPromise{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-.butt1{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-      background-image: url(./assets/bg.jpg);
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
     main {
       display: flex;
       margin-top: 10%;
@@ -136,21 +133,8 @@ body{
       box-sizing: border-box;
     }
 
-    body {
-      margin-top: 5%;
-      /* margin-left: 15%; */
-      background-image: url(assets/bg.jpg);
-      background-size: 100%;
-    }
-
     img {
       height: 60px;
-    }
-
-    body {
-      background-image: url(assets/bg.jpg);
-      background-size: 100%;
-      display: block;
     }
 
     .h1 {
@@ -168,7 +152,6 @@ body{
       border: 1px solid white;
       border-radius: 50px;
       margin: 10px 20px;
-
     }
 
     #answers {
@@ -178,7 +161,6 @@ body{
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-
     }
 
     h3 {
