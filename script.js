@@ -99,6 +99,7 @@
       },
     ];
 
+
 //Abbiamo un array di domande composto da:
 //category, type, difficulty, question, correct_answer, incorrect_answers
 
@@ -107,19 +108,8 @@
 //campo checked da flaggare per abilitare il bottone di inizio esame.
 
 //array di risposte utente da caricare mentre fa il test
-//ora ho messo delle risposte per provare il funzionamento
 let answersUser=[]
-//   "Central Processing Unit",
-//   "Final",
-//   "False",
-//   "Computer Personal Unit",
-//   "Final",
-//   "False",
-//   "Nougat",
-//   "140",
-//   "False",
-//   "Java"
-// ]
+
 //punteggio utente 
 let score=0
 
@@ -154,9 +144,10 @@ function allAnswers(){
     }
   return allAns
 }
-// controllarisposte(answersUser)
+
+//variabile per il controllo del numero della domanda
 let n=0
-// console.log("Hai totalizzato "+ score + " su 10")
+
 function proceed(nDom){
   const buttonAnswer=document.querySelectorAll(".answer")
   const questionLabel=document.querySelector("h1.question")
@@ -166,6 +157,7 @@ function proceed(nDom){
     buttonAnswer[1].innerHTML=allAns[nDom].due
     buttonAnswer[2].innerHTML=allAns[nDom].tre
     buttonAnswer[3].innerHTML=allAns[nDom].quattro
+
   }
   //buttonAnswer[0].innerHTML=questions[0].correct_answer
 
