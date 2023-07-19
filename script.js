@@ -134,9 +134,8 @@ function controllarisposte(rispUser){
   }
 }
 
-
+let allAns=[]
 function allAnswers(){
-  let allAns=[]
   // const oneAns={uno:"",due:"",tre:"",quattro:""}
     for(let x=0;x<questions.length;x++){
       if(questions[x].type!="boolean"){
@@ -149,7 +148,7 @@ function allAnswers(){
       }else{
         const bAns={uno:"",due:""}
         bAns.uno=questions[x].correct_answer
-        bAns.due=questions[x].incorrect_answers
+        bAns.due=questions[x].incorrect_answers[0]
         allAns.push(bAns)
       }
     }
@@ -161,15 +160,14 @@ function allAnswers(){
 function proceed(){
   const buttonAnswer=document.querySelectorAll(".answer")
   const questionLabel=document.querySelector("h1.question")
-  for(let i=0;i<buttonAnswer.length;i++){
-    questionLabel.innerHTML=questions[i].question
-    buttonAnswer[i].innerHTML=allAns[i].uno
-    buttonAnswer[i].innerHTML=allAns[i].due
-    buttonAnswer[i].innerHTML=allAns[i].tre
-    buttonAnswer[i].innerHTML=allAns[i].quattro
+    console.log(allAns)
+    questionLabel.innerHTML=questions[0].question
+    buttonAnswer[0].innerHTML=allAns[0].uno
+    buttonAnswer[1].innerHTML=allAns[0].due
+    buttonAnswer[2].innerHTML=allAns[0].tre
+    buttonAnswer[3].innerHTML=allAns[0].quattro
   }
   //buttonAnswer[0].innerHTML=questions[0].correct_answer
-}
 
 
 window.onload=function(){
