@@ -142,22 +142,45 @@ function allAnswers(){
         allAns.push(bAns)
       }
     }
+    // let currentIndex=allAns.length, randomIndex
+    // while(currentIndex!=0){
+    //   randomIndex=Math.floor(Math.random()*currentIndex)
+    //   currentIndex--
+    //   [allAns[currentIndex], allAns[randomIndex]]=[allAns[randomIndex],allAns[currentIndex]]
+    // }
   return allAns
 }
 
 //variabile per il controllo del numero della domanda
 let n=0
 
+function random(){  
+  return Math.floor(Math.random()*4)
+}
+
 function proceed(nDom){
   const buttonAnswer=document.querySelectorAll(".answer")
   const questionLabel=document.querySelector("h1.question")
     console.log(allAns)
     questionLabel.innerHTML=questions[nDom].question
-    buttonAnswer[0].innerHTML=allAns[nDom].uno
-    buttonAnswer[1].innerHTML=allAns[nDom].due
-    buttonAnswer[2].innerHTML=allAns[nDom].tre
-    buttonAnswer[3].innerHTML=allAns[nDom].quattro
-
+    let nRan1=random()
+    
+    let nRan2=0
+    while(nRan2===nRan1){
+         nRan2=random()
+      }
+      let nRan3=0
+      while((nRan3===nRan1)||(nRan3===nRan2)){
+        nRan3=random()
+      }
+      let nRan4=0
+      while((nRan4===nRan1)||(nRan4===nRan2)||(nRan4===nRan3)){
+       nRan4=random()
+      }
+    buttonAnswer[nRan1].innerHTML=allAns[nDom].uno
+    buttonAnswer[nRan2].innerHTML=allAns[nDom].due
+    buttonAnswer[nRan3].innerHTML=allAns[nDom].tre
+    buttonAnswer[nRan4].innerHTML=allAns[nDom].quattro
   }
   //buttonAnswer[0].innerHTML=questions[0].correct_answer
 
@@ -166,35 +189,33 @@ window.onload=function(){
   allAnswers()
   proceed(n)
   let buttonAnswer=document.querySelectorAll(".answer")
+  let h3QuestionN=document.querySelector("h3")
+  h3QuestionN.innerHTML="Question " + (n+1) +" / 10"
   // buttonAnswer[0].innerHTML=questions[0].correct_answer
+  
+  
   for (const bA of buttonAnswer) {
+     //al click di una delle risposte  
       bA.addEventListener("click", function(event){
+        //aggiungo all'array delle risposte dell'utente la risposta cliccata
         answersUser.push(event.target.innerHTML)
+
+        //per vedere con un alert la risposta cliccata
         alert(event.target.innerHTML)
         n++;
+        h3QuestionN.innerHTML="Question " + (n+1) +" / 10"
         if(n<questions.length){
-        // answersUser.push()
         proceed(n)
         }else {
-          alert("terminato")
+          alert("Test terminato")
+          for (const bOff of buttonAnswer) {
+            bOff.remove()
+          }
+          document.querySelector("h1.question").remove()
           controllarisposte(answersUser)
-          alert("hai totalizzato " + score)
+          // alert("hai totalizzato " + score)
+          h3QuestionN.innerHTML="Hai Totalizzato "+ score + " punti"
         }
     })
   }
-
-    //al click del bottone proceed parte questo
-    // let newli=document.createElement('li')
-    // let domand=document.querySelector('ul')
-    
-    //newli.innerText=questions[0].incorrect_answers[0]
-    // console.log(newli.innerText)
-    // domand.appendChild(newli)
-    // let Button=document.createElement('button')
-
-    // newli.classList.add("newClass")
-    // domand.appendChild(Button)
-
-
-    // console.log(allAnswers,boolAns)
 }

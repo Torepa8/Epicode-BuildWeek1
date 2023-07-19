@@ -89,9 +89,15 @@ body{
     }
     
 
-    button {
+    button.answer {
       height: 30px;
       background-color: transparent;
+    }
+
+    button:hover{
+      box-shadow: 2px 2px 2px 2px;
+      transition-duration: 0.9s;
+      background-color: #D20094;
     }
 
     *,
@@ -130,4 +136,8 @@ body{
     h3 {
       color: white;
       text-align: center;
+    }
+
+    .hidden{
+      visibility: hidden;
     }
