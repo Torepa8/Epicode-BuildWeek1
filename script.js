@@ -155,40 +155,41 @@ function allAnswers(){
   return allAns
 }
 // controllarisposte(answersUser)
-
+let n=0
 // console.log("Hai totalizzato "+ score + " su 10")
-function proceed(){
+function proceed(nDom){
   const buttonAnswer=document.querySelectorAll(".answer")
   const questionLabel=document.querySelector("h1.question")
     console.log(allAns)
-    questionLabel.innerHTML=questions[0].question
-    buttonAnswer[0].innerHTML=allAns[0].uno
-    buttonAnswer[1].innerHTML=allAns[0].due
-    buttonAnswer[2].innerHTML=allAns[0].tre
-    buttonAnswer[3].innerHTML=allAns[0].quattro
+    questionLabel.innerHTML=questions[nDom].question
+    buttonAnswer[0].innerHTML=allAns[nDom].uno
+    buttonAnswer[1].innerHTML=allAns[nDom].due
+    buttonAnswer[2].innerHTML=allAns[nDom].tre
+    buttonAnswer[3].innerHTML=allAns[nDom].quattro
   }
   //buttonAnswer[0].innerHTML=questions[0].correct_answer
 
 
 window.onload=function(){
-  let fourAns=allAnswers()
-  console.log(fourAns)
-  proceed()
-  // const buttonAnswer=document.querySelectorAll(".answer")
+  allAnswers()
+  proceed(n)
+  let buttonAnswer=document.querySelectorAll(".answer")
   // buttonAnswer[0].innerHTML=questions[0].correct_answer
-  buttonProceed.addEventListener("click", function(){
-    
-    //elimino h1,h3, dalla pagina
-    // let h1=document.querySelector("h1")
-    // h1.remove()
-    // let h3=document.querySelector("h3")
-    // h3.innerText=questions[0].question
-    // let p=document.querySelector("p")
-    // p.remove()
-    // let divF=document.querySelector("div.footer")
-    // divF.remove()
-
-    alert("Sta per iniziare il tuo esame")
+  for (const bA of buttonAnswer) {
+      bA.addEventListener("click", function(event){
+        answersUser.push(event.target.innerHTML)
+        alert(event.target.innerHTML)
+        n++;
+        if(n<questions.length){
+        // answersUser.push()
+        proceed(n)
+        }else {
+          alert("terminato")
+          controllarisposte(answersUser)
+          alert("hai totalizzato " + score)
+        }
+    })
+  }
 
     //al click del bottone proceed parte questo
     // let newli=document.createElement('li')
@@ -204,5 +205,4 @@ window.onload=function(){
 
 
     // console.log(allAnswers,boolAns)
-  })
 }
