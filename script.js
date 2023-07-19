@@ -162,7 +162,6 @@ function proceed(){
   const buttonAnswer=document.querySelectorAll(".answer")
   const questionLabel=document.querySelector("h1.question")
   for(let i=0;i<buttonAnswer.length;i++){
-    alert(buttonAnswer.length)
     questionLabel.innerHTML=questions[i].question
     buttonAnswer[i].innerHTML=allAns[i].uno
     buttonAnswer[i].innerHTML=allAns[i].due
