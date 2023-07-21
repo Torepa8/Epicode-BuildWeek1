@@ -113,6 +113,10 @@ let answersUser=[]
 //punteggio utente 
 let score=0
 
+//funzione che abilita il bottone quando la check è spuntata
+function oncheck(){
+  document.querySelector("#start").disabled=!document.querySelector("input").checked
+}
 
 //funzione per confrontare le risposte corrette 
 //con quelle dell'utente 
@@ -124,7 +128,9 @@ function controllarisposte(rispUser){
   }
 }
 
-let allAns=[]
+
+let allAns=[]  //array con tutte le risposte di tutte le domande
+//funzione che inserisce tutte le risposte in un array
 function allAnswers(){
   // const oneAns={uno:"",due:"",tre:"",quattro:""}
     for(let x=0;x<questions.length;x++){
@@ -142,25 +148,26 @@ function allAnswers(){
         allAns.push(bAns)
       }
     }
-    // let currentIndex=allAns.length, randomIndex
-    // while(currentIndex!=0){
-    //   randomIndex=Math.floor(Math.random()*currentIndex)
-    //   currentIndex--
-    //   [allAns[currentIndex], allAns[randomIndex]]=[allAns[randomIndex],allAns[currentIndex]]
-    // }
   return allAns
 }
 
 //variabile per il controllo del numero della domanda
 let n=0
 
+
+//generare numero a caso tra 0 e 3
 function random(){  
   return Math.floor(Math.random()*4)
 }
 
+
+//questa funzione inserisce nelle label tutte le risposte
+//della domanda (nDom - n) che viene passata come parametro
+//una volta che clicchiamo next
+
 function proceed(nDom){
-  const buttonAnswer=document.querySelectorAll(".answer")
-  const questionLabel=document.querySelector("h1.question")
+  const labelAnswer=document.querySelectorAll(".risp")
+  const questionLabel=document.querySelector(".question")
     console.log(allAns)
     questionLabel.innerHTML=questions[nDom].question
     let nRan1=random()
@@ -177,45 +184,67 @@ function proceed(nDom){
       while((nRan4===nRan1)||(nRan4===nRan2)||(nRan4===nRan3)){
        nRan4=random()
       }
-    buttonAnswer[nRan1].innerHTML=allAns[nDom].uno
-    buttonAnswer[nRan2].innerHTML=allAns[nDom].due
-    buttonAnswer[nRan3].innerHTML=allAns[nDom].tre
-    buttonAnswer[nRan4].innerHTML=allAns[nDom].quattro
+    labelAnswer[nRan1].innerHTML=allAns[nDom].uno
+    labelAnswer[nRan2].innerHTML=allAns[nDom].due
+    labelAnswer[nRan3].innerHTML=allAns[nDom].tre
+    labelAnswer[nRan4].innerHTML=allAns[nDom].quattro
   }
-  //buttonAnswer[0].innerHTML=questions[0].correct_answer
+
+
+function prova(){
+  alert("hai selezionato")
+}
+
+ function controlCheckAnswer(radButt,labRisp){
+   for (let i=0;i<radButt.length;i++) {
+     if(radButt[i].checked){
+       // document.querySelector(.next).disabled=false
+       answersUser.push(labRisp[i].innerHTML)
+       alert(labRisp[i].innerHTML)
+       break;
+     }
+   }
+ }
+
+// labelAnswer.addEventListener("click", controlCheckAnswer())
 
 
 window.onload=function(){
+  let buttonNext=document.querySelector(".next")
   allAnswers()
   proceed(n)
-  let buttonAnswer=document.querySelectorAll(".answer")
+  let radioRisposte=document.querySelectorAll("input[name='answer']")
+
+  let labelAnswer=document.querySelectorAll(".risp")
   let h3QuestionN=document.querySelector("h3")
   h3QuestionN.innerHTML="Question " + (n+1) +" / 10"
-  // buttonAnswer[0].innerHTML=questions[0].correct_answer
-  
-  
-  for (const bA of buttonAnswer) {
-     //al click di una delle risposte  
-      bA.addEventListener("click", function(event){
-        //aggiungo all'array delle risposte dell'utente la risposta cliccata
-        answersUser.push(event.target.innerHTML)
 
-        //per vedere con un alert la risposta cliccata
-        alert(event.target.innerHTML)
+
+     //al click di una delle risposte  
+      buttonNext.addEventListener("click", function(){
+        
+        controlCheckAnswer(radioRisposte,labelAnswer)
+
+        // if(labelAnswer[0].checked)
+        // {
+        // //aggiungo all'array delle risposte dell'utente la risposta cliccata
+        // answersUser.push(labelAnswer[0].innerHTML)
+        // alert(labelAnswer[0].innerHTML)
+        // }
+        
         n++;
         h3QuestionN.innerHTML="Question " + (n+1) +" / 10"
         if(n<questions.length){
         proceed(n)
         }else {
           alert("Test terminato")
-          for (const bOff of buttonAnswer) {
+          for (const bOff of labelAnswer) {
             bOff.remove()
           }
           document.querySelector("h1.question").remove()
           controllarisposte(answersUser)
-          // alert("hai totalizzato " + score)
           h3QuestionN.innerHTML="Hai Totalizzato "+ score + " punti"
         }
     })
-  }
+  
 }

@@ -82,7 +82,7 @@ body{
 
     .footer {
       display: flex;
-      justify-content:space-around;
+      justify-content:flex-start;
       align-items: center;
       width: 100%;
       gap: 20px;
@@ -95,9 +95,8 @@ body{
     }
 
     button:hover{
-      box-shadow: 2px 2px 2px 2px;
+      box-shadow: 0px -5px 23px -1px grey;
       transition-duration: 0.9s;
-      background-color: #D20094;
     }
 
     *,
@@ -123,6 +122,39 @@ body{
       border-radius: 50px;
       margin: 10px 20px;
     }
+
+
+
+    .next{
+      color: white;
+      margin-right: 15%;
+      border-radius: 25%;
+      border: 1px solid grey;
+      background-color: transparent;
+    }
+
+
+    input[type=radio]+label{
+      display: flex;
+      justify-content: center;
+      box-shadow: 0px -5px 23px -1px grey;
+      border: 1px solid grey;
+      /* text-align: center; */
+      /* width: 40%; */
+      /* margin: 20px; */
+      margin-left: 20px;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    input[type=radio]{
+      display: none;
+    }
+
+    input[type=radio]:checked+label{
+      background-color: #D20094;
+    }
+
 
     #answers {
       width: 60%;
