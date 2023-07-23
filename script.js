@@ -108,98 +108,13 @@
 //campo checked da flaggare per abilitare il bottone di inizio esame.
 
 //array di risposte utente da caricare mentre fa il test
-let answersUser=[]
 
-//punteggio utente 
-let score=0
+//punteggio utente
 
-let allAns=[]  //array con tutte le risposte di tutte le domande
+//array con tutte le risposte di tutte le domande
 //funzione che inserisce tutte le risposte in un array
-function allAnswers(){
-  const allR=questions.incorrect_answers.concat(questions.correct_answer)
-  alert(allR)
-  // const oneAns={uno:"",due:"",tre:"",quattro:""}
-    for(let x=0;x<questions.length;x++){
-      if(questions[x].type!="boolean"){
-      const oneAns={}
-      oneAns.uno=questions[x].correct_answer
-      oneAns.due=questions[x].incorrect_answers[0]
-      oneAns.tre=questions[x].incorrect_answers[1]
-      oneAns.quattro=questions[x].incorrect_answers[2]
-      allAns.push(oneAns)
-      }else{
-        const bAns={}
-        bAns.uno=questions[x].correct_answer
-        bAns.due=questions[x].incorrect_answers[0]
-        allAns.push(bAns)
-      }
-    }
-  return allAns
-}
 
 //funzione che abilita il bottone quando la check è spuntata
 function oncheck(){
   document.querySelector("#start").disabled=!document.querySelector("input").checked
-}
-
-//variabile per il controllo del numero della domanda
-let n=0
-
-
-//generare numero a caso tra 0 e 3
-function random(){  
-  return Math.floor(Math.random()*4)
-}
-
-
-//questa funzione inserisce nelle label tutte le risposte
-//della domanda (nDom - n) che viene passata come parametro
-//una volta che clicchiamo next
-
-function proceed(nDom){
-  const labelAnswer=document.querySelectorAll(".risp")
-  const questionLabel=document.querySelector(".question")
-  // const radioRisposte=document.querySelectorAll("input[name='answer']")
-    console.log(allAns)
-    questionLabel.innerHTML=questions[nDom].question
-    let nRan1=random()
-    
-    let nRan2=0
-    while(nRan2===nRan1){
-         nRan2=random()
-      }
-      let nRan3=0
-      while((nRan3===nRan1)||(nRan3===nRan2)){
-        nRan3=random()
-      }
-      let nRan4=0
-      while((nRan4===nRan1)||(nRan4===nRan2)||(nRan4===nRan3)){
-       nRan4=random()
-      }
-    labelAnswer[nRan1].innerHTML=allAns[nDom].uno
-    labelAnswer[nRan2].innerHTML=allAns[nDom].due
-    labelAnswer[nRan3].innerHTML=allAns[nDom].tre
-    labelAnswer[nRan4].innerHTML=allAns[nDom].quattro
-  }
-
-function controlCheckAnswer(radButt,labRisp){
-  for (let i=0;i<radButt.length;i++) {
-    if(radButt[i].checked){
-      // document.querySelector(.next).disabled=false
-      answersUser.push(labRisp[i].innerHTML)
-      // alert(labRisp[i].innerHTML)
-      break;
-    }
-  }
-}
-
- //funzione per confrontare le risposte corrette
-//con quelle dell'utente 
-function controllarisposte(){
-  for (let i=0;i<questions.length;i++) {
-    if(answersUser[i]===questions[i].correct_answer){
-      score+=1;
-    }
-  }
-  return score
 }

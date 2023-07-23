@@ -1,30 +1,46 @@
 window.onload=function(){
-    // let labelAnswer=document.querySelectorAll(".risp")
-    // let radioRisposte=document.querySelectorAll("input[name='answer']")
-    // let h3QuestionN=document.querySelector("h3")
-    
-    // allAnswers()
-    // proceed(n)
+    //al caricamento della pagina mi inserisce 
+    //domande e risposte nella pagina
     creazioneRadioLabel()
   }
-  
-  const testoDomanda=document.querySelector("h1")
+
+  const domandeMescolate=mescolaArray(questions)
+  const testoDomanda=document.querySelector("h1") 
   const shownumberquestion=document.querySelector("h3")
   let nDomandaCorrente=0
   let tRisp=tutteLeRisposte()
   const buttonNext=document.querySelector(".next")  
   let punteggio=0
 
+  function mescolaArray(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
   function tutteLeRisposte(){
-    let answerAll=questions[nDomandaCorrente].incorrect_answers.concat(questions[nDomandaCorrente].correct_answer)
+    let answerAll=domandeMescolate[nDomandaCorrente].incorrect_answers.concat(domandeMescolate[nDomandaCorrente].correct_answer)
     console.log(answerAll)
-    return answerAll
+    return answerAll=mescolaArray(answerAll)
   }
 
   function creazioneRadioLabel(){
+
     const divRisposte=document.getElementById("answers")
     divRisposte.innerHTML=""
-    testoDomanda.innerText=questions[nDomandaCorrente].question
+    testoDomanda.innerText=domandeMescolate[nDomandaCorrente].question
     for (const answer of tRisp) {
     const inputRisp=document.createElement('input')
     inputRisp.type = 'radio'
@@ -36,21 +52,22 @@ window.onload=function(){
     labelRisp.innerText = answer
     labelRisp.htmlFor=answer
     divRisposte.appendChild(inputRisp)
-    divRisposte.appendChild(labelRisp)     
+    divRisposte.appendChild(labelRisp)    
     }
   }
 
   function controllaRisposta(){
     const selezioneUtente=document.querySelector('input[name="answer"]:checked')
-    if(selezioneUtente&&selezioneUtente.value===questions[nDomandaCorrente].correct_answer)
+    if(selezioneUtente&&selezioneUtente.value===domandeMescolate[nDomandaCorrente].correct_answer)
       punteggio++
   }
 
   buttonNext.addEventListener("click", function(){
-    // let h3QuestionN=document.querySelector("h3")
     
-    if(nDomandaCorrente<questions.length-1){
-      controllaRisposta()
+    controllaRisposta()
+    
+    if(nDomandaCorrente<domandeMescolate.length-1){
+      // controllaRisposta()
       nDomandaCorrente++
       tRisp=tutteLeRisposte(nDomandaCorrente)
       creazioneRadioLabel()

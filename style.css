@@ -123,6 +123,11 @@ body{
       background-color: transparent;
     }
 
+    .next:hover{
+      background-color: #00FFFF;
+      transition: 0.8s;
+    }
+
     input[type=radio]+label{
       display: flex;
       justify-content: center;
