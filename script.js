@@ -113,42 +113,33 @@ let answersUser=[]
 //punteggio utente 
 let score=0
 
-//funzione che abilita il bottone quando la check è spuntata
-function oncheck(){
-  document.querySelector("#start").disabled=!document.querySelector("input").checked
-}
-
-//funzione per confrontare le risposte corrette 
-//con quelle dell'utente 
-function controllarisposte(rispUser){
-  for (let i=0;i<questions.length;i++) {
-    if(rispUser[i]===questions[i].correct_answer){
-      score+=1;
-    }
-  }
-}
-
-
 let allAns=[]  //array con tutte le risposte di tutte le domande
 //funzione che inserisce tutte le risposte in un array
 function allAnswers(){
+  const allR=questions.incorrect_answers.concat(questions.correct_answer)
+  alert(allR)
   // const oneAns={uno:"",due:"",tre:"",quattro:""}
     for(let x=0;x<questions.length;x++){
       if(questions[x].type!="boolean"){
-      const oneAns={uno:"",due:"",tre:"",quattro:""}
+      const oneAns={}
       oneAns.uno=questions[x].correct_answer
       oneAns.due=questions[x].incorrect_answers[0]
       oneAns.tre=questions[x].incorrect_answers[1]
       oneAns.quattro=questions[x].incorrect_answers[2]
       allAns.push(oneAns)
       }else{
-        const bAns={uno:"",due:""}
+        const bAns={}
         bAns.uno=questions[x].correct_answer
         bAns.due=questions[x].incorrect_answers[0]
         allAns.push(bAns)
       }
     }
   return allAns
+}
+
+//funzione che abilita il bottone quando la check è spuntata
+function oncheck(){
+  document.querySelector("#start").disabled=!document.querySelector("input").checked
 }
 
 //variabile per il controllo del numero della domanda
@@ -168,6 +159,7 @@ function random(){
 function proceed(nDom){
   const labelAnswer=document.querySelectorAll(".risp")
   const questionLabel=document.querySelector(".question")
+  // const radioRisposte=document.querySelectorAll("input[name='answer']")
     console.log(allAns)
     questionLabel.innerHTML=questions[nDom].question
     let nRan1=random()
@@ -190,61 +182,24 @@ function proceed(nDom){
     labelAnswer[nRan4].innerHTML=allAns[nDom].quattro
   }
 
-
-function prova(){
-  alert("hai selezionato")
+function controlCheckAnswer(radButt,labRisp){
+  for (let i=0;i<radButt.length;i++) {
+    if(radButt[i].checked){
+      // document.querySelector(.next).disabled=false
+      answersUser.push(labRisp[i].innerHTML)
+      // alert(labRisp[i].innerHTML)
+      break;
+    }
+  }
 }
 
- function controlCheckAnswer(radButt,labRisp){
-   for (let i=0;i<radButt.length;i++) {
-     if(radButt[i].checked){
-       // document.querySelector(.next).disabled=false
-       answersUser.push(labRisp[i].innerHTML)
-       alert(labRisp[i].innerHTML)
-       break;
-     }
-   }
- }
-
-// labelAnswer.addEventListener("click", controlCheckAnswer())
-
-
-window.onload=function(){
-  let buttonNext=document.querySelector(".next")
-  allAnswers()
-  proceed(n)
-  let radioRisposte=document.querySelectorAll("input[name='answer']")
-
-  let labelAnswer=document.querySelectorAll(".risp")
-  let h3QuestionN=document.querySelector("h3")
-  h3QuestionN.innerHTML="Question " + (n+1) +" / 10"
-
-
-     //al click di una delle risposte  
-      buttonNext.addEventListener("click", function(){
-        
-        controlCheckAnswer(radioRisposte,labelAnswer)
-
-        // if(labelAnswer[0].checked)
-        // {
-        // //aggiungo all'array delle risposte dell'utente la risposta cliccata
-        // answersUser.push(labelAnswer[0].innerHTML)
-        // alert(labelAnswer[0].innerHTML)
-        // }
-        
-        n++;
-        h3QuestionN.innerHTML="Question " + (n+1) +" / 10"
-        if(n<questions.length){
-        proceed(n)
-        }else {
-          alert("Test terminato")
-          for (const bOff of labelAnswer) {
-            bOff.remove()
-          }
-          document.querySelector("h1.question").remove()
-          controllarisposte(answersUser)
-          h3QuestionN.innerHTML="Hai Totalizzato "+ score + " punti"
-        }
-    })
-  
+ //funzione per confrontare le risposte corrette
+//con quelle dell'utente 
+function controllarisposte(){
+  for (let i=0;i<questions.length;i++) {
+    if(answersUser[i]===questions[i].correct_answer){
+      score+=1;
+    }
+  }
+  return score
 }
